@@ -1,10 +1,10 @@
 <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
 
     <!-- Truck Body (White Trailer) -->
-    <rect x="35" y="30" width="30" height="65" fill="yellow" opacity="1" stroke="black" stroke-width="1.5"/>
+    <rect x="35" y="30" width="30" height="65" fill="red" opacity="1" stroke="black" stroke-width="1.5"/>
 
     <!-- Truck Cab (Blue Top with Rounded Front) -->
-    <path d="M35,20 Q50,10 65,20 L65,30 L35,30 Z" fill="yellow" stroke="black" stroke-width="1.5"/>
+    <path d="M35,20 Q50,10 65,20 L65,30 L35,30 Z" fill="red" stroke="black" stroke-width="1.5"/>
 
     <!-- Windshield (Curved) -->
     <path d="M37,22 Q50,15 63,22 L63,28 L37,28 Z" fill="white" stroke="black" stroke-width="0.5"/>
@@ -23,9 +23,14 @@
 
 
     <!-- Front tire -->
-    <rect x="64" y="44" width="3" height="6" fill="black" rx="1" ry="1"/>
+    <rect x="64" y="30" width="3" height="6" fill="black" rx="1" ry="1"/>
 
     <!-- Rear tire -->
-    <rect x="32" y="44" width="3" height="6" fill="black" rx="2" ry="1"/>
+    <rect x="32" y="30" width="3" height="6" fill="black" rx="2" ry="1"/>
 
+
+
+
+<!---      <rect x="40" y="35" width="20" height="55" fill="black" opacity="0.8" stroke="black" stroke-width="0.5"/>
+ -->
 </svg>
