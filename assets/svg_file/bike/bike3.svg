@@ -1,0 +1,25 @@
+<svg width="200" height="200" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Rider's head (helmet) -->
+    <circle cx="12" cy="6" r="1.2" fill="#000"/> <!-- Helmet -->
+
+    <!-- Rider's body (upper and lower) -->
+    <rect x="10.5" y="7" width="3" height="3.6" rx="1" fill="#000"/> <!-- Upper body -->
+    <rect x="10.5" y="12" width="3" height="3" fill="#000"/> <!-- Lower body / Jacket -->
+
+    <!-- Rider's arms holding the handlebars -->
+    <rect x="9" y="5.5" width="1" height="3" fill="#000"/> <!-- Left arm -->
+    <rect x="14" y="5.5" width="1" height="3" fill="#000"/> <!-- Right arm -->
+    <circle cx="8.5" cy="8" r="0.3" fill="#000"/> <!-- Left hand holding handlebar -->
+    <circle cx="15.5" cy="8" r="0.3" fill="#000"/> <!-- Right hand holding handlebar -->
+
+    <!-- Bike seat or lower body -->
+    <rect x="10.5" y="9.2" width="3" height="3" fill="#000"/>
+
+    <!-- Bike's front tire -->
+    <circle cx="12.0" cy="2.9" r="0.5" fill="#000"/> <!-- Front tire -->
+    <rect x="11.5" y="2.7" width="1" height="2" fill="#000"/> <!-- Front fork -->
+
+    <!-- Bike's rear tire -->
+    <circle cx="12.0" cy="15.9" r="0.5" fill="#000"/> <!-- Rear tire -->
+    <rect x="11.5" y="14.9" width="1" height="1" fill="#000"/> <!-- Rear fork -->
+</svg>

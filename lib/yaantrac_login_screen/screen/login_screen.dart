@@ -89,12 +89,20 @@ class _LoginScreenState extends State<YaantracLoginScreen>
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                              TextUtil(
-                                text: "Yaantrac",
-                                weight: true,
-                                size: 20,
-                                color: Colors.white,
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  'assets/images/yaantrac_name.png',
+                                  height: 50.0,
+                                  width: 100.0,
+                                ),
                               ),
+                              // TextUtil(
+                              //   text: "Yaantrac",
+                              //   weight: true,
+                              //   size: 20,
+                              //   color: Colors.white,
+                              // ),
                               TextUtil(
                                 text: "Login",
                                 weight: true,

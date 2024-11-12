@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:marquee/marquee.dart';
 import 'package:new_try/yaantrac_login_screen/screen/login_screen.dart';
 
 class GradientScreen extends StatelessWidget {

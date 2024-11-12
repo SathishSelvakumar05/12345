@@ -21,8 +21,8 @@ class _BarChartDataScreenState extends State<BarChartDataScreen> {
       20,
       [
         {
-          'name': ['27/10', '22/10', '20/10'],
-          'value': ['3', '5', '10']
+          'name': ['27/10', '22/10', '20/10', '10/11'],
+          'value': ['3', '5', '1', '22']
         }
       ],
     ),
@@ -31,26 +31,46 @@ class _BarChartDataScreenState extends State<BarChartDataScreen> {
       40,
       [
         {
-          'name': ['7/10', '2/10', '0/10'],
-          'value': ['30', '25', '1']
+          'name': ['7/10', '2/10', '9/10', '22/02'],
+          'value': ['30', '25', '1', '7']
         }
       ],
     ),
   ];
 
-  List<Map<String, String>>? selectedDetails;
+  List<String>? selectedNames;
+  String? DisplayName;
+  List<double>? selectedValues;
+  var data;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    data = overviewData;
+  }
+
+  void updateChartData(int index) {
+    final details = overviewData[index].details.first;
+    print('detail list is $details ');
+
+    selectedNames = details['name'];
+    print('selectedNames$selectedNames');
+    print('selectedName Length${selectedNames!.length}');
+
+    DisplayName = overviewData[index].x;
+    selectedValues = details['value']?.map((v) => double.parse(v)).toList();
+    print('selectedValues$selectedValues');
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Interactive Bar Chart"),
-      ),
       body: Column(
         children: [
           Container(
             height: 140,
-            color: Colors.black,
+            color: Colors.black12,
             child: Center(
               child: Text(
                 "FOR RAKAZ",
@@ -70,11 +90,23 @@ class _BarChartDataScreenState extends State<BarChartDataScreen> {
                       showTitles: true,
                       getTitlesWidget: (value, meta) {
                         final index = value.toInt();
-                        if (index >= 0 && index < overviewData.length) {
+                        if (selectedNames != null &&
+                            index >= 0 &&
+                            index < selectedNames!.length) {
+                          //   print('selectedNames!.length${selectedNames!.length}');
                           return SideTitleWidget(
                             axisSide: meta.axisSide,
                             child: Text(
-                              overviewData[index].x,
+                              selectedNames![index],
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          );
+                        } else if (index >= 0 && index < data.length) {
+                          //print('overviewData.length${overviewData.length}');
+                          return SideTitleWidget(
+                            axisSide: meta.axisSide,
+                            child: Text(
+                              data[index].x,
                               style: const TextStyle(fontSize: 12),
                             ),
                           );
@@ -89,45 +121,41 @@ class _BarChartDataScreenState extends State<BarChartDataScreen> {
                       reservedSize: 40,
                     ),
                   ),
+                  rightTitles: const AxisTitles(
+                    sideTitles: SideTitles(
+                      showTitles: false,
+                    ),
+                  ),
                 ),
                 borderData: FlBorderData(show: false),
-                barGroups: overviewData
-                    .asMap()
-                    .entries
-                    .map(
-                      (entry) => BarChartGroupData(
-                        x: entry.key,
-                        barRods: [
-                          BarChartRodData(
-                            toY: entry.value.y.toDouble(),
-                            color: Colors.orange,
-                            width: 20,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ],
+                barGroups: overviewData.asMap().entries.map((entry) {
+                  final i = entry.key;
+                  final data = entry.value;
+                  return BarChartGroupData(
+                    x: i,
+                    barRods: [
+                      BarChartRodData(
+                        toY:
+                            selectedValues != null && i < selectedValues!.length
+                                ? selectedValues![i]
+                                : data.y.toDouble(),
+                        color: Colors.orange,
+                        width: 20,
+                        borderRadius: BorderRadius.circular(5),
                       ),
-                    )
-                    .toList(),
+                    ],
+                  );
+                }).toList(),
                 barTouchData: BarTouchData(
                   touchCallback: (event, response) {
                     if (event.isInterestedForInteractions &&
+                        selectedNames == null &&
                         response != null &&
                         response.spot != null) {
                       final index = response.spot!.touchedBarGroupIndex;
                       if (index >= 0 && index < overviewData.length) {
                         setState(() {
-                          selectedDetails = [];
-                          final details = overviewData[index].details.first;
-                          final names = details['name'] ?? [];
-                          final values = details['value'] ?? [];
-
-                          // Pair names and values together
-                          for (int i = 0; i < names.length; i++) {
-                            selectedDetails!.add({
-                              'name': names[i],
-                              'value': values[i],
-                            });
-                          }
+                          updateChartData(index);
                         });
                       }
                     }
@@ -136,34 +164,37 @@ class _BarChartDataScreenState extends State<BarChartDataScreen> {
               ),
             ),
           ),
-          const SizedBox(height: 20),
-          if (selectedDetails != null) ...[
-            Text(
-              "Detailed Values",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            ...selectedDetails!.map(
-              (detail) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4.0),
-                child: Text(
-                  "${detail['name']}: ${detail['value']}",
-                  style: TextStyle(fontSize: 16),
-                ),
+          SizedBox(height: 20),
+          if (selectedNames != null)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Detailed view for $DisplayName",
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
+          if (selectedNames != null)
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  selectedDetails = null;
+                  selectedNames = null;
+                  selectedValues = null;
                 });
               },
               child: Text("Back to Overview"),
             ),
-          ] else
-            const Text(
-              "Tap on a bar to see details",
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+          SizedBox(height: 20),
+          Container(
+            height: 140,
+            color: Colors.black12,
+            child: Center(
+              child: Text(
+                "FOR RAKAZ",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
+          ),
         ],
       ),
     );

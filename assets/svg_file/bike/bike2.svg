@@ -1,0 +1,19 @@
+<svg width="200" height="200" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Rider's head -->
+    <circle cx="12" cy="6" r="1.2" fill="#000"/> <!-- Helmet -->
+
+    <!-- Rider's body -->
+    <rect x="10.5" y="7" width="3" height="3.6" rx="" ry="1.4" fill="#000"/>
+    <rect x="10.5" y="12" width="3" height="2" ry='0.3' fill="#000"/>
+
+    <!-- Arms -->
+    <rect x="7" y="5.8" width="3.5" height="0.5" fill="#000"/> <!-- Left arm -->
+    <rect x="13.5" y="5.8" width="3.5" height="0.5" fill="#000"/> <!-- Right arm -->
+
+    <!-- Bike seat or lower body -->
+    <rect x="10.5" y='9.0' width="3" height="3"  fill="#000"/>
+
+    <circle cx="12.0" cy="2.9" r="0.5"  fill="#000"/> <!-- front tier  -->
+    <rect x="11.5" y="2.7" width="1" height="2" fill="#000"/> <!-- front tier -->
+
+</svg>
