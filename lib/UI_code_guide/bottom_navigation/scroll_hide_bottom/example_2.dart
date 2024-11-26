@@ -53,13 +53,6 @@ class _BottomExampleTwoState extends State<BottomExampleTwo> {
       ),
       body: Column(
         children: [
-          // AnimatedContainer(
-          //   duration: Duration(milliseconds: 300),
-          //   height: _isBottomButtonsVisible ? 36 : 0,
-          //   padding: EdgeInsets.symmetric(horizontal: 16),
-          //   child:
-          //       _isBottomButtonsVisible ? TextFormField() : SizedBox.shrink(),
-          // ),
           SizedBox(height: 20),
           Expanded(
             child: ListView.builder(
